@@ -32,7 +32,7 @@ function getSources(phrases) {
   var ruleTable = JSON.parse(localStorage["ruleTable"]);
 
   var sources = [];
-	for (i in phrases) {
+  for (i in phrases) {
     for (reString in ruleTable) {
       var re = new RegExp(reString);
       var matched = phrases[i].match(re);
