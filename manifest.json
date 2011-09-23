@@ -1,7 +1,7 @@
 {
-  "name": "CompleteMe",
+  "name": "Expandr",
   "version": "0.1",
-	"description": "Complete keywords",
+	"description": "Expand ALL the things",
 	"browser_action": {
 		"popup": "popup.html"
 	},
