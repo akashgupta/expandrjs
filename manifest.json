@@ -1,14 +1,14 @@
 {
   "name": "Expandr",
   "version": "0.1",
-	"description": "Expand ALL the things",
-	"browser_action": {
-		"popup": "popup.html"
-	},
-	"content_scripts": [
+  "description": "Expand ALL the things",
+  "browser_action": {
+    "popup": "popup.html"
+  },
+  "content_scripts": [
     {
-		  "matches": ["<all_urls>"],
+      "matches": ["<all_urls>"],
       "js": ["jquery/jquery.min.js", "format.js", "inject.js"]
-		}
-	]
+    }
+  ]
 }
