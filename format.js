@@ -8,7 +8,7 @@
  * Returns a JSONObject with data:
  *
  * {
- *   key   : "company",
+ *   key   : "investors",
  *   argList : list of args,
  *   modifiers : hashtable of modifiers (jsonobject)
  * }
@@ -72,7 +72,7 @@ function parse(text) {
  *   -- Arguments
  *   -- (k,v) modifiers
  *
- * Example: {{investors quora, 2001 | format=csv, limit=10}}
+ * Example: {{investors, quora, 2001 | format=csv, limit=10}}
 */
 function getData(tokenList) {
 
