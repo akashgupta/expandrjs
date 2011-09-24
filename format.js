@@ -18,36 +18,36 @@ function processText(el, text) {
   var queries = parse(text);
 
   var objList = [];
-	for (index in queries) {
-	  var totalQuery = queries[index];
-		var pipeSplit = totalQuery.split(' | ');
-	  var queryArgs = pipeSplit[0].split(',');
+  for (index in queries) {
+    var totalQuery = queries[index];
+    var pipeSplit = totalQuery.split(' | ');
+    var queryArgs = pipeSplit[0].split(',');
     var query = queryArgs[0].trim();
-		args = [];
-		for (argIndex in queryArgs) {
-		  if (argIndex == 0) { continue; }
+    args = [];
+    for (argIndex in queryArgs) {
+      if (argIndex == 0) { continue; }
       args.push("arg=" + queryArgs[argIndex].trim());
     }
     var modifierList = pipeSplit[1].split(',').map(function(s) { return s.trim(); });
-		var modifierMap = convertToMap(modifierList);
+    var modifierMap = convertToMap(modifierList);
 
     var obj = { key : query, argList : args, modifiers : modifierMap };
-		objList.push(obj);
-	}
+    objList.push(obj);
+  }
 
-	return objList;
+  return objList;
 }
 
 function convertToMap(list) {
   var modifiers = {};
-	for (index in list) {
+  for (index in list) {
     var splitted = list[index].split('=');
-		var key = splitted[0];
-		var val = splitted[1];
+    var key = splitted[0];
+    var val = splitted[1];
     modifiers[key] = val;
-	}
+  }
 
-	return modifiers;
+  return modifiers;
 }
 
 function parse(text) {
