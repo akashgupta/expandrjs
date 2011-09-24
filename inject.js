@@ -16,7 +16,10 @@ $(document).ready(function() {
       // Read text
       var text = el.val();
 
-      processText(el, text);
+      var token = processText(el, text); // returns jsonobject of queries
+			var data = getData(token);
+			var formatted = formatData(data, token);
+			replaceData(formatted);
     }
   }, false);
 });
