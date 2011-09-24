@@ -18,10 +18,10 @@ $(document).ready(function() {
         return;
 			}
 
-      var token = processText(el, text); // returns jsonobject of queries
-			var data = getData(token);
-			var formatted = formatData(data, token);
-			replaceData(formatted);
+      var tokenList = processText(el, text); // returns jsonobject of queries
+			var dataList = getData(tokenList);
+			var formattedList = formatData(dataList, tokenList);
+			replaceData(formattedList);
     }
   }, false);
 });

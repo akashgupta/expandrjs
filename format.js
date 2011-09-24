@@ -8,20 +8,47 @@
  * Returns a JSONObject with data:
  *
  * {
- *   keyname   : "company",
- *   arguments : list of args,
+ *   key   : "company",
+ *   argList : list of args,
  *   modifiers : hashtable of modifiers (jsonobject)
  * }
  */
 function processText(el, text) {
   // Parse for key words
-  var phrases = parse(text);
+  var queries = parse(text);
 
-  // Match against rules
-  var sources = getSources(phrases);
-  console.log("Sources: " + sources);
+  var objList = [];
+	for (index in queries) {
+	  var totalQuery = queries[index];
+		var pipeSplit = totalQuery.split(' | ');
+	  var queryArgs = pipeSplit[0].split(',');
+    var query = queryArgs[0].trim();
+		args = [];
+		for (argIndex in queryArgs) {
+		  if (argIndex == 0) { continue; }
+      args.push("arg=" + queryArgs[argIndex].trim());
+    }
+    var modifierList = pipeSplit[1].split(',').map(function(s) { return s.trim(); });
+		var modifierMap = convertToMap(modifierList);
 
-  }
+    var obj = { key : query, argList : args, modifiers : modifierMap };
+		objList.push(obj);
+	}
+
+	return objList;
+}
+
+function convertToMap(list) {
+  var modifiers = {};
+	for (index in list) {
+    var splitted = list[index].split('=');
+		var key = splitted[0];
+		var val = splitted[1];
+    modifiers[key] = val;
+	}
+
+	return modifiers;
+}
 
 function parse(text) {
   //TODO: Give ability to put {{key}} inside another {{key}}
@@ -29,11 +56,11 @@ function parse(text) {
   // Find all substrings of the form "{{keywords}}"
   var regex = /\{{2}[^\}]+\}{2}/g;
 
-  var phrases = [];
+  var queries = [];
   $.each(text.match(regex), function(index, substring) {
-    phrases.push(substring.slice(2, -2));
+    queries.push(substring.slice(2, -2));
   });
-  return phrases;
+  return queries;
 }
 
 /*
@@ -47,17 +74,17 @@ function parse(text) {
  *
  * Example: {{investors quora, 2001 | format=csv, limit=10}}
 */
-function getData(token) {
+function getData(tokenList) {
 
 }
 
-function formatted(data, token) {
+function formatData(dataList, tokenList) {
 
 }
 
-function replaceData(formatted) {
+function replaceData(formattedList) {
   // Replace text
-  el.val(sources[0]);
+  //el.val("lol");
 }
 
 // TODO: Get rid of this stuff
