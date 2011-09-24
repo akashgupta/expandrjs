@@ -10,11 +10,13 @@ $(document).ready(function() {
     el = $(this);
   });
 
-  window.addEventListener("keydown", function(event) {
-    var modifier = event.ctrlKey || event.metaKey;
-    if (modifier && event.shiftKey && event.keyCode == 69) {
-      // Read text
+  window.addEventListener("keyup", function(event) {
+		if (event.shiftKey && event.keyCode == 221) {
+			// Read text
       var text = el.val();
+      if (text.length < 4 || text[text.length-2] != '}') {
+        return;
+			}
 
       var token = processText(el, text); // returns jsonobject of queries
 			var data = getData(token);
